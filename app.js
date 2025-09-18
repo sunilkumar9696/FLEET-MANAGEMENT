@@ -1,8 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import { notFound, errorHandler } from './src/middlewares/errorHandler.js';
 import connectDB from './src/config/database.js';
-import authRoutes from "./routes/authRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
+import routeRoutes from "./src/routes/routeRoutes.js";
+import vehicleRoutes from "./src/routes/vehicleRoutes.js";
+import driverRoutes from "./src/routes/driverRoutes.js";
+import locationRoutes from "./src/routes/locationRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -14,6 +19,10 @@ app.use(cors({ origin: '*' }));
 
 //Api routes
 app.use("/api/auth", authRoutes);
+app.use("/api/location", locationRoutes);
+app.use("/api/routes", routeRoutes);
+app.use("/api/vehicle" ,vehicleRoutes);
+app.use("/api/driver" , driverRoutes);
 
 
 app.get('/health', (req, res) => {
