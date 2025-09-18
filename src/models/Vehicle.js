@@ -8,6 +8,10 @@ const vehicleSchema = new mongoose.Schema({
   fuelType: { type: String, enum: ["Petrol", "Diesel", "CNG", "Electric", "Hybrid"] },
   lastServiceDate: { type: Date },
   vehicleType: { type: String, enum: ["Truck", "Van", "Car", "Bike", "Bus"] },
+  speed: { type: Number, default: 0 }, // km/h
+  fuelLevel: { type: Number, default: 100 }, // percentage
+  currentLocation: { type: String }, // e.g., "Highway A4, Km 45.2"
+  eta: { type: String }, // e.g., "45 min"
   status: { type: String, enum: ["Active", "Idle", "Maintenance", "Offduty" ,"Parked" , "Moving" , "Break" , "Reached"], default: "Active" }
 }, { timestamps: true });
 
