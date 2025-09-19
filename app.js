@@ -24,7 +24,6 @@ app.use("/api/routes", routeRoutes);
 app.use("/api/vehicle" ,vehicleRoutes);
 app.use("/api/driver" , driverRoutes);
 
-
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is healthy' });
 });

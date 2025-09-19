@@ -1,20 +1,28 @@
-import express from "express";
+import express from 'express';
 import {
-  registerUser,
-  loginUser,
+  register,
+  login,
+  logout,
   forgotPassword,
-} from "../controllers/authController.js";
-import { protect, authorizeRoles } from "../middlewares/authMiddleware.js";
+  resetPassword,
+  getAllUsers,
+  getUserById,
+  updateUserById,
+  deleteUserById
+} from '../controllers/authController.js';
+import { protect, authorizeRoles } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
-router.post("/forgot-password", forgotPassword);
+router.post('/register', register);
+router.post('/login', login);
+router.post('/logout', logout);
+router.post('/forgotpassword', forgotPassword);
+router.post('/resetpassword/:token', resetPassword);
 
-// Example of role-based protected route
-router.get("/admin", protect, authorizeRoles("admin"), (req, res) => {
-  res.json({ message: `Welcome Admin ${req.user.username}` });
-});
+router.get('/getallusers', protect, authorizeRoles('Admin'), getAllUsers);
+router.put('/updateuser/:id', protect, authorizeRoles('Admin'), updateUserById);
+router.get('/getuser/:id', getUserById);
+router.delete('/deleteuser/:id', protect, authorizeRoles('Admin'), deleteUserById);
 
 export default router;
