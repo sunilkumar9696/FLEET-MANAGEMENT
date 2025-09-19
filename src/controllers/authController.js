@@ -130,7 +130,7 @@ export const forgotPassword = async (req, res) => {
     const resetToken = user.generateResetToken();
     await user.save({ validateBeforeSave: false });
 
-    const resetUrl = `${req.protocol}://${req.get("host")}/api/users/resetpassword/${resetToken}`;
+    const resetUrl = `${req.protocol}://${req.get("host")}/api/auth/resetpassword/${resetToken}`;
 
     const message = `
       <p>You requested a password reset</p>
