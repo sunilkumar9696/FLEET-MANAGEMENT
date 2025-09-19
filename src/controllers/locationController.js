@@ -45,7 +45,7 @@ export const getVehicleLatestLocation = async (req, res) => {
     const location = await Location.findOne({ vehicleId: req.params.vehicleId })
       .sort({ timestamp: -1 });
     if (!location) return res.status(404).json({ message: "No location found" });
-    res.json(location);
+    res.status(201).json(location);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
