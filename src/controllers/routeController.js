@@ -15,7 +15,7 @@ export const createRoute = async (req, res) => {
 export const getRoutes = async (req, res) => {
   try {
     const routes = await Route.find().populate("driver vehicle");
-    res.status(201).json(routes);
+    res.status(200).json(routes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -26,7 +26,7 @@ export const getRouteById = async (req, res) => {
   try {
     const route = await Route.findById(req.params.id).populate("driver vehicle");
     if (!route) return res.status(404).json({ message: "Route not found" });
-    res.status(201).json(route);
+    res.status(200).json(route);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -48,7 +48,7 @@ export const deleteRoute = async (req, res) => {
   try {
     const route = await Route.findByIdAndDelete(req.params.id);
     if (!route) return res.status(404).json({ message: "Route not found" });
-    res.status(201).json({ message: "Route deleted successfully" });
+    res.status(200).json({ message: "Route deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

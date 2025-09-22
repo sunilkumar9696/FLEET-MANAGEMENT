@@ -45,7 +45,7 @@ export const getVehicleLatestLocation = async (req, res) => {
     const location = await Location.findOne({ vehicleId: req.params.vehicleId })
       .sort({ timestamp: -1 });
     if (!location) return res.status(404).json({ message: "No location found" });
-    res.status(201).json(location);
+    res.status(200).json(location);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -58,7 +58,7 @@ export const getActiveLocations = async (req, res) => {
       { $sort: { timestamp: -1 } },
       { $group: { _id: "$vehicleId", latest: { $first: "$$ROOT" } } }
     ]);
-    res.json(locations);
+    res.status(200).json(locations);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -173,7 +173,7 @@ export const resetPassword = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ message: "Password reset successful" });
+    res.status(201).json({ message: "Password reset successful" });
   } catch (error) {
     console.error("Reset password error:", error);
     res.status(500).json({ error: error.message });
@@ -222,7 +222,7 @@ export const updateUserById = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({ success: true, message: "User updated", user });
+    res.status(201).json({ success: true, message: "User updated", user });
   } catch (error) {
     console.error("Update user error:", error);
     res.status(500).json({ message: "Server error" });
