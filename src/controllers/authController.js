@@ -25,9 +25,6 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: "User with given email or phone number already exists." });
     }
 
-    // Force role to 'User' unless you explicitly want to allow role assignment here
-    role = "User";
-
     const newUser = await User.create({
       name,
       email,
