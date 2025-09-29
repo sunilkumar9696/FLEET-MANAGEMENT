@@ -206,14 +206,10 @@ export const updateUserById = async (req, res) => {
   try {
     const updates = req.body;
 
-    if (updates.password) {
-      return res.status(400).json({ message: "Password cannot be updated here" });
-    }
-
     const user = await User.findByIdAndUpdate(req.params.id, updates, {
       new: true,
       runValidators: true,
-    }).select("-password");
+    });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
